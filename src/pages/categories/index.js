@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { kebabCase } from 'lodash';
+import { kebabCase, upperFirst } from 'lodash';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import Layout from '../../components/Layout';
@@ -12,7 +12,7 @@ const CategoriesPage = (props) => {
   const { group } = allMarkdownRemark;
 
   const allItems = (group || []).map(({ fieldValue, totalCount }) => ({
-    fieldValue,
+    fieldValue: upperFirst(fieldValue),
     totalCount,
     linkTo: `/category/${kebabCase(fieldValue)}`,
   }));
@@ -39,7 +39,10 @@ export const categoriesPageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(limit: 1000) {
+    allMarkdownRemark(
+        limit: 1000
+        filter: { frontmatter: { templateKey: { eq: "blog-post" }, draft: {ne: true} } }
+    ) {
       group(field: frontmatter___category) {
         fieldValue
         totalCount

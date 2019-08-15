@@ -6,7 +6,6 @@ import { Link } from 'gatsby';
 const GridCategoriesTags = ({ title, allItems }) => {
   const [searchTerm, setSearchTerm] = useState();
   const [items, setItems] = useState(allItems);
-
   const filterItems = (event) => {
     const searchTermValue = event.target.value;
     setSearchTerm(searchTermValue);
@@ -37,7 +36,12 @@ const GridCategoriesTags = ({ title, allItems }) => {
       </div>
       <div className="grid-categories-tags">
         {items.map(({ fieldValue, totalCount, linkTo }) => (
-          <Link to={linkTo}>{`${fieldValue} (${totalCount})`}</Link>
+          <Link
+            to={linkTo}
+            key={linkTo}
+          >
+            {`${fieldValue} (${totalCount})`}
+          </Link>
         ))}
       </div>
     </div>

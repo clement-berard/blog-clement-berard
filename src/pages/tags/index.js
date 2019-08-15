@@ -40,7 +40,10 @@ export const tagPageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(limit: 1000) {
+    allMarkdownRemark(
+        limit: 1000
+        filter: { frontmatter: { templateKey: { eq: "blog-post" }, draft: {ne: true} } }
+    ) {
       group(field: frontmatter___tags) {
         fieldValue
         totalCount
