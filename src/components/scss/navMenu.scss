@@ -1,17 +1,40 @@
 #mainNav {
-  border-bottom: 1px solid $light-gray;
-  #navMenu {
-    .site-title {
-      font-weight: 600;
-      font-size: 1.2em;
-      transform: translateY(-2px);
-    }
-    a {
-      transition: color 0.2s linear;
-      color: $black;
-      &:hover {
-        color: $palette-6;
+  height: 80px;
+  .main-nav-bar--container {
+    height: 100%;
+    width: 100%;
+    background-color: $dark-violet;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 4fr 0.3fr 0.3fr;
+    & > * {
+      a {
+        transition: background-color 0.2s linear;
+        width: 100%;
+        height: 100%;
+        color: #ffffff;
+        @include center-flex();
+        &:hover {
+          background-color: $light-violet !important;
+        }
       }
+      &.main-nav-bar--container--brand {
+        a:hover {
+          background-color: $palette-6 !important;
+        }
+      }
+
+      &:not(:last-child) {
+        border-right: 1px solid $light-black;
+      }
+      @include center-flex();
     }
   }
+
+    .site-title {
+      img {
+        height: 70px;
+      }
+    }
+
+
 }

@@ -1,91 +1,40 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import { FaChild } from 'react-icons/fa'
-import logo from '../img/logo.svg'
+import React from 'react';
+import { Link } from 'gatsby';
+import { FaChild, FaGithub } from 'react-icons/fa';
+import logo from '../img/logo-cblog.svg';
 
-const Navbar = class extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      active: false,
-      navBarActiveClass: '',
-    }
-  }
+const Navbar = () => (
+  <nav
+    className="navbar is-transparent main-nav-bar"
+    role="navigation"
+    aria-label="main-navigation"
+    id="mainNav"
+  >
+    <div className="main-nav-bar--container">
+      <div className="main-nav-bar--container--brand">
+        <Link to="/" className="site-title">
+          <img src={logo} alt="CBlog" />
+        </Link>
+      </div>
+      <div className="main-nav-bar--container--item">
+        <Link to="/categories">Catégories</Link>
+      </div>
+      <div className="main-nav-bar--container--item">
+        <Link to="/tags">Tags</Link>
+      </div>
+      <div />
+      <div className="main-nav-bar--container--item">
+        <a href="https://berard.dev" target="_blank" rel="noopener noreferrer">
+          <FaChild />
+        </a>
+      </div>
+      <div className="main-nav-bar--container--item">
+        <a href="https://github.com/clement-berard" target="_blank" rel="noopener noreferrer">
+          <FaGithub />
+        </a>
+      </div>
+    </div>
+  </nav>
+);
 
-  toggleHamburger = () => {
-    // toggle the active boolean in the state
-    this.setState(
-      {
-        active: !this.state.active,
-      },
-      // after state has been updated,
-      () => {
-        // set the class in state for the navbar accordingly
-        this.state.active
-          ? this.setState({
-              navBarActiveClass: 'is-active',
-            })
-          : this.setState({
-              navBarActiveClass: '',
-            })
-      }
-    )
-  }
-
-  render() {
-    return (
-      <nav
-        className="navbar is-transparent main-nav-bar"
-        role="navigation"
-        aria-label="main-navigation"
-        id="mainNav"
-      >
-        <div className="container">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item">
-              <img src={logo} alt="logo" />
-            </Link>
-            {/* Hamburger menu */}
-            <div
-              className={`navbar-burger burger ${this.state.navBarActiveClass}`}
-              data-target="navMenu"
-              onClick={() => this.toggleHamburger()}
-            >
-              <span />
-              <span />
-              <span />
-            </div>
-          </div>
-          <div
-            id="navMenu"
-            className={`navbar-menu ${this.state.navBarActiveClass}`}
-          >
-            <div className="navbar-start has-text-centered">
-              <Link to="/" className="navbar-item site-title">
-                CBlog
-              </Link>
-              <span className="separator"></span>
-              <Link className="navbar-item" to="/categories">
-                Catégories
-              </Link>
-              <Link className="navbar-item" to="/tags">
-                Tags
-              </Link>
-            </div>
-            <div className="navbar-end has-text-centered">
-              <a
-                className="navbar-item"
-                href="https://berard.dev"
-                target="_blank"
-              >
-                <FaChild />
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
-    )
-  }
-}
-
-export default Navbar
+export default Navbar;

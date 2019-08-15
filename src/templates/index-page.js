@@ -4,29 +4,10 @@ import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import BlogRoll from '../components/BlogRoll';
-import { getCitation } from '../other/oscarwilde.citation';
 import SEO from '../components/seo';
 
-export const IndexPageTemplate = ({ image }) => (
+export const IndexPageTemplate = () => (
   <div id="index-page">
-    <div
-      className="full-width-image margin-top-0 index-image-full"
-      style={{
-        backgroundImage: `url(${
-          image.childImageSharp ? image.childImageSharp.fluid.src : image
-        })`,
-      }}
-    >
-      <div className="content-wrapper">
-        <span className="has-text-weight-bold is-size-5-mobile is-size-5-tablet is-size-4-widescreen citation">
-          «
-          {' '}
-          {getCitation}
-          {' '}
-»
-        </span>
-      </div>
-    </div>
     <section className="section section--gradient">
       <div className="container">
         <div className="section">
