@@ -49,7 +49,7 @@ export const BlogPostTemplate = ({
                 {tags && (
                   <div className="post-subtitle-tags">
                     <FaTags className="post-subtitle-icon" />
-                    {tags.map((tag) => (
+                    {tags.sort().map((tag) => (
                       <span key={`${tag}tag`} className="post-subtitle-tag">
                         <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
                       </span>
