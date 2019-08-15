@@ -6,9 +6,9 @@ description: On désigne par le terme de « lumière visible » le spectre du ra
 featuredpost: true
 featuredimage: /img/blog/post-la-lumiere.jpg
 tags:
-  - it
   - physique
   - video
+  - espace
 category: science
 ---
 ![flavor wheel](/img/blog/post-la-lumiere.jpg)[]()
