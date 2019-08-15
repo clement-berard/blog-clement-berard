@@ -4,6 +4,8 @@ $kaldi-red: #410713;
 $kaldi-red-invert: #fff;
 
 $primary: $kaldi-red;
+$dark-violet: #100e17;
+$light-violet: #201c29;
 $primary-invert: $kaldi-red-invert;
 $body-color: #333;
 $black: #2b2523;
@@ -25,3 +27,9 @@ $menu-item-active-color: $kaldi-red-invert;
 $menu-item-active-background-color: $kaldi-red-invert;
 $menu-list-border-left: 1px solid $kaldi-red-invert;
 $menu-label-color: $white-ter;
+
+@mixin center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
