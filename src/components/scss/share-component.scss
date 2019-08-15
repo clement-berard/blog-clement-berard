@@ -1,0 +1,41 @@
+#share-component {
+  > div {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    div.title {
+      font-size: 12px;
+    }
+    div.link-list {
+      ul {
+        margin: 0;
+        li {
+          list-style: none;
+          display: inline;
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
+          a {
+            transition: color .5s linear, border-color .5s linear;
+            color: $light-black;
+            &:hover {
+              color: $palette-6;
+              border: 1px solid $palette-6;
+            }
+            justify-content: center;
+            position: relative;
+            width: 40px;
+            height: 40px;
+            line-height: 1;
+            border-radius: 30px;
+            overflow: hidden;
+            align-items: center;
+            display: inline-flex;
+            border: 1px solid $light-black;
+          }
+        }
+      }
+    }
+  }
+}
+

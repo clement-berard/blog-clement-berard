@@ -1,0 +1,9 @@
+#footer-component {
+  color: $black;
+  a {
+    color: $black;
+    &:hover {
+      color: $light-black;
+    }
+  }
+}

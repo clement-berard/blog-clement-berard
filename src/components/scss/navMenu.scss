@@ -1,0 +1,17 @@
+#mainNav {
+  border-bottom: 1px solid $light-gray;
+  #navMenu {
+    .site-title {
+      font-weight: 600;
+      font-size: 1.2em;
+      transform: translateY(-2px);
+    }
+    a {
+      transition: color 0.2s linear;
+      color: $black;
+      &:hover {
+        color: $palette-6;
+      }
+    }
+  }
+}

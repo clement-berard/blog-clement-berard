@@ -1,0 +1,24 @@
+#index-page {
+  .index-image-full {
+    background-position: top left;
+    background-attachment: fixed;
+
+    .content-wrapper {
+      display: flex;
+      height: 150px;
+      line-height: 1;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-direction: column;
+      $title-opacity: 0.9;
+      .citation {
+        box-shadow: rgba($palette-4, $title-opacity) 0.5rem 0px 0px, rgba($palette-4, $title-opacity) -0.5rem 0px 0px;
+        background-color: rgba($palette-4, $title-opacity);
+        color: $black;
+        line-height: 1;
+        padding: 0.25em;
+        font-weight: lighter !important;
+      }
+    }
+  }
+}

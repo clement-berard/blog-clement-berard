@@ -1,0 +1,41 @@
+.grid-categories-tags-wrapper {
+  margin-bottom: 6rem;
+  .grid-categories-tags-search {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    height: 50px;
+    margin-bottom: 2rem;
+    input[type="text"] {
+      font-size: 35px;
+      border: none;
+      color: $black;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .grid-categories-tags {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    & > * {
+      height: 150px;
+      border: 1px solid $light-gray;
+      color: $black;
+      font-size: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      transition: color 0.2s linear, box-shadow 0.2s linear;
+      &:hover {
+        color: $palette-6;
+        box-shadow: 0 3px 10px 0 rgba($black, 0.75);
+      }
+    }
+  }
+}
