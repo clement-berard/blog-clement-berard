@@ -1,4 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
+import { DARK_VIOLET, LIGHT_GRAY, PALETTE_6 } from '../../config/theme.config';
+
+const FooterBlock = styled.div`
+  background-color: ${DARK_VIOLET};
+  min-height: 20vh;
+  margin-top: 80px;
+  clip-path: polygon(0 0, 100% 31%, 100% 100%, 0 100%);
+  padding: 5rem 2rem;
+`;
+
+const FooterContent = styled.div`
+  color: ${LIGHT_GRAY};
+  a {
+    color: ${LIGHT_GRAY};
+    transition: color 0.2s linear;
+    &:hover {
+      color: ${PALETTE_6};
+    }
+  }
+  text-align: center;
+`;
 
 const Footer = () => {
   const dt = new Date();
@@ -9,13 +31,13 @@ const Footer = () => {
   );
   const text = `© ${dt.getFullYear()}`;
   return (
-    <footer id="footer-component" className="footer">
-      <div className="content has-text-centered">
+    <FooterBlock>
+      <FooterContent>
         <LinkWebsite />
         {' '}
         {text}
-      </div>
-    </footer>
+      </FooterContent>
+    </FooterBlock>
   );
 };
 
