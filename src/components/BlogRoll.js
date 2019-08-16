@@ -31,7 +31,12 @@ export default () => (
       query BlogRollQuery {
         allMarkdownRemark(
           sort: { order: DESC, fields: [frontmatter___date] }
-          filter: { frontmatter: { templateKey: { eq: "blog-post" }, draft: {ne: true} } }
+          filter: {
+            frontmatter: {
+              templateKey: { eq: "blog-post" }
+              draft: { ne: true }
+            }
+          }
         ) {
           edges {
             node {
@@ -51,6 +56,13 @@ export default () => (
                 featuredimage {
                   childImageSharp {
                     fluid(maxWidth: 400, quality: 100) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+                featuredimageThumb: featuredimage {
+                  childImageSharp {
+                    fluid(maxWidth: 250, quality: 95) {
                       ...GatsbyImageSharpFluid
                     }
                   }
