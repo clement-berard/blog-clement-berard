@@ -8,7 +8,7 @@ const BlogPostItem = ({ post }) => {
   const dateFormated = formatDate(post.frontmatter.date);
   const featuredImageResult = blogCardImagePlaceholder(
     post.frontmatter.category,
-    post.frontmatter.featuredimage,
+    post.frontmatter.featuredimageThumb,
   );
   return (
     <div className="blog-card" key={post.fields.slug}>

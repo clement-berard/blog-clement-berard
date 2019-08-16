@@ -1,12 +1,14 @@
-const proxy = require('http-proxy-middleware')
+const proxy = require('http-proxy-middleware');
 
+const siteTitle = 'Blog - Clément BERARD';
+const shortSiteTitle = 'CBlog';
 module.exports = {
   siteMetadata: {
-    title: 'Blog - Clément BERARD',
+    title: siteTitle,
     author: 'Clément BERARD',
-    siteUrl: 'https://alpha.blog.keload.com',
+    siteUrl: 'https://blog.clementberard.com',
     description:
-      'Notre planète est ronde, ici pas de conspiration, les sources sont triées sur le volet, et de qualitées',
+      'Sciences, physique, informatique, développement, programmation, domotique...',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -74,7 +76,7 @@ module.exports = {
               width: 400,
               ratio: 1.77, // Optional: Defaults to 16/9 = 1.77
               height: 200, // Optional: Overrides optional.ratio
-              related: false, // Optional: Will remove related videos from the end of an embedded YouTube video.
+              related: false,
               noIframeBorder: true, // Optional: Disable insertion of <style> border: 0
             },
           },
@@ -157,10 +159,24 @@ module.exports = {
       },
     }, // must be after other CSS plugins
     'gatsby-plugin-netlify', // make sure to keep it last in the array
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: siteTitle,
+        short_name: shortSiteTitle,
+        start_url: '/',
+        background_color: '#f7f0eb',
+        theme_color: '#201c29',
+        display: 'standalone',
+        icon: 'src/img/logo-cblog.svg',
+      },
+    },
+    'gatsby-plugin-offline',
+    'gatsby-plugin-advanced-sitemap',
   ],
   // for avoiding CORS while developing Netlify Functions locally
   // read more: https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying
-  developMiddleware: app => {
+  developMiddleware: (app) => {
     app.use(
       '/.netlify/functions/',
       proxy({
@@ -168,7 +184,7 @@ module.exports = {
         pathRewrite: {
           '/.netlify/functions/': '',
         },
-      })
-    )
+      }),
+    );
   },
-}
+};

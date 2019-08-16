@@ -95,7 +95,7 @@ const BlogPost = ({ data }) => {
   const { markdownRemark: post } = data;
   const featuredImageResult = blogCardImagePlaceholder(
     post.frontmatter.category,
-    post.frontmatter.featuredimage,
+    post.frontmatter.featuredimageThumb,
   );
   return (
     <Layout>
@@ -137,12 +137,12 @@ export const pageQuery = graphql`
         description
         tags
         category
-        featuredimage {
-          childImageSharp {
-            fluid(maxWidth: 300, quality: 100) {
-              ...GatsbyImageSharpFluid
+        featuredimageThumb: featuredimage {
+            childImageSharp {
+                fluid(maxWidth: 250, quality: 95) {
+                    ...GatsbyImageSharpFluid
+                }
             }
-          }
         }
       }
     }
