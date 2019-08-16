@@ -139,6 +139,11 @@ function SEO({
                   url: personWebsite,
                 },
                 keywords: isArray(frontmatter.tags) && frontmatter.tags.join(', '),
+                publisher: {
+                  '@type': 'Organization',
+                  name: siteAuthorName,
+                  url: personWebsite,
+                },
                 url: href,
                 datePublished: frontmatter.date,
                 dateCreated: frontmatter.date,
