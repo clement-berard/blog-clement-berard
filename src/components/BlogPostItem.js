@@ -12,7 +12,7 @@ const BlogPostItem = ({ post }) => {
   );
   return (
     <div className="blog-card" key={post.fields.slug}>
-      <div className="meta">
+      <Link to={`/${post.fields.slug}`} className="meta">
         <div
           className="photo"
           style={{
@@ -22,7 +22,7 @@ const BlogPostItem = ({ post }) => {
         <ul className="details">
           <li className="date">{dateFormated}</li>
         </ul>
-      </div>
+      </Link>
       <div className="description">
         <Link to={`/${post.fields.slug}`} className="description-link-article">
           {post.fields.fullTitle}
