@@ -128,7 +128,16 @@ function SEO({
                 },
                 headline: metaTitle,
                 image: generatedMetaImage,
-                author: twitterUser,
+                author: {
+                  '@type': 'Person',
+                  name: siteAuthorName,
+                  url: personWebsite,
+                },
+                creator: {
+                  '@type': 'Person',
+                  name: siteAuthorName,
+                  url: personWebsite,
+                },
                 keywords: isArray(frontmatter.tags) && frontmatter.tags.join(', '),
                 publisher: {
                   '@type': 'Person',
