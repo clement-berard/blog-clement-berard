@@ -19,6 +19,7 @@
     "gatsby-image": "^2.0.23",
     "gatsby-plugin-advanced-sitemap": "^1.4.0",
     "gatsby-plugin-categories": "^2.3.5",
+    "gatsby-plugin-feed": "^2.3.6",
     "gatsby-plugin-manifest": "^2.2.5",
     "gatsby-plugin-netlify": "^2.0.6",
     "gatsby-plugin-netlify-cms": "^4.1.6",
