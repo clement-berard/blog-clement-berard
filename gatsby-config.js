@@ -173,6 +173,65 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-advanced-sitemap',
+    {
+      resolve: 'gatsby-plugin-feed',
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => allMarkdownRemark.edges.map((edge) => ({
+              ...edge.node.frontmatter,
+              title: edge.node.fields.fullTitle,
+              description: edge.node.frontmatter.description,
+              date: edge.node.frontmatter.date,
+              url: `${site.siteMetadata.siteUrl}/${edge.node.fields.slug}`,
+              guid: `${site.siteMetadata.siteUrl}/${edge.node.fields.slug}`,
+              custom_elements: [{ 'content:encoded': edge.node.frontmatter.description }],
+            })),
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                  filter: {
+                    frontmatter: {
+                      templateKey: { eq: "blog-post" }
+                      draft: { ne: true }
+                    }
+                  }
+                ) {
+                  edges {
+                    node {
+                      fields { 
+                        slug
+                        fullTitle
+                       }
+                      frontmatter {
+                        title
+                        date
+                        description
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml',
+            title: `${siteTitle} - RSS Feed`,
+          },
+        ],
+      },
+    },
   ],
   // for avoiding CORS while developing Netlify Functions locally
   // read more: https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying
