@@ -1,5 +1,6 @@
 #mainNav {
   height: 80px;
+  border-bottom: 1px solid $light-violet;
   .main-nav-bar--container {
     height: 100%;
     width: 100%;
@@ -24,7 +25,7 @@
       }
 
       &:not(:last-child) {
-        border-right: 1px solid $light-black;
+        border-right: 1px solid $light-violet;
       }
       @include center-flex();
     }

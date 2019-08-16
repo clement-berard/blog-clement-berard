@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { kebabCase, upperFirst, noop } from 'lodash';
-import { FaCalendar, FaFolder, FaTags } from 'react-icons/fa';
-import { graphql, Link } from 'gatsby';
+import { noop } from 'lodash';
+import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Content, { HTMLContent } from '../components/Content';
 import SEO from '../components/seo';
 import ShareComponent from '../components/Share';
-import { blogCardImagePlaceholder, formatDate } from '../utils/functions.utils';
+import PostHero from '../components/PostHero';
+import { blogCardImagePlaceholder } from '../utils/functions.utils';
 
 export const BlogPostTemplate = ({
   content,
@@ -20,50 +20,25 @@ export const BlogPostTemplate = ({
 }) => {
   const PostContent = contentComponent || Content;
   return (
-    <section id="page-post" className="section">
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="post-header">
-              <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-                {title}
-              </h1>
-              <div className="post-subtitle">
-                <div className="post-subtitle-date">
-                  <FaCalendar className="post-subtitle-icon" />
-                  {formatDate(date)}
-                </div>
-                {category && (
-                  <div className="post-subtitle-category">
-                    <FaFolder className="post-subtitle-icon" />
-                    <span
-                      key={`${category}category`}
-                      className="post-subtitle-tag"
-                    >
-                      <Link to={`/category/${kebabCase(category)}/`}>
-                        {upperFirst(category)}
-                      </Link>
-                    </span>
-                  </div>
-                )}
-                {tags && (
-                  <div className="post-subtitle-tags">
-                    <FaTags className="post-subtitle-icon" />
-                    {tags.sort().map((tag) => (
-                      <span key={`${tag}tag`} className="post-subtitle-tag">
-                        <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <p>{description}</p>
+    <section id="page-post">
+      <PostHero
+        title={title}
+        description={description}
+        category={category}
+        tags={tags}
+        date={date}
+      />
+      <section className="section">
+        <div className="container content">
+          <div className="columns">
+            <div className="column is-10 is-offset-1">
+              <PostContent content={content} className="post-content" />
             </div>
-            <PostContent content={content} className="post-content" />
           </div>
         </div>
-        <ShareComponent pageTitle={title} summary={description} />
-      </div>
+      </section>
+
+      <ShareComponent pageTitle={title} summary={description} />
     </section>
   );
 };
