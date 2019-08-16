@@ -64,6 +64,13 @@ export const tagPageQuery = graphql`
                 }
               }
             }
+            featuredimageThumb: featuredimage {
+                childImageSharp {
+                    fluid(maxWidth: 250, quality: 95) {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
           }
         }
       }
