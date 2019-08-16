@@ -1,11 +1,12 @@
 const proxy = require('http-proxy-middleware');
+const { siteAuthorName } = require('./config/site.config');
 
-const siteTitle = 'Blog - Clément BERARD';
+const siteTitle = `Blog - ${siteAuthorName}`;
 const shortSiteTitle = 'CBlog';
 module.exports = {
   siteMetadata: {
     title: siteTitle,
-    author: 'Clément BERARD',
+    author: siteAuthorName,
     siteUrl: 'https://blog.clementberard.com',
     description:
       'Sciences, physique, informatique, développement, programmation, domotique...',

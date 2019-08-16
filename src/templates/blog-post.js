@@ -78,6 +78,8 @@ const BlogPost = ({ data }) => {
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
         image={featuredImageResult}
+        frontmatter={post.frontmatter}
+        isPost
       />
       <BlogPostTemplate
         content={post.htmlAst}
