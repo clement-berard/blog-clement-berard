@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import { FaCalendar, FaFolder, FaTags } from 'react-icons/fa';
+import { FaCalendarAlt, FaFolderOpen, FaTags } from 'react-icons/fa';
 import { kebabCase, upperFirst } from 'lodash';
 import { Link } from 'gatsby';
 import { formatDate, blogHeroImagePlaceholder } from '../utils/functions.utils';
@@ -50,23 +50,20 @@ const PostHeroBlock = styled.div`
 
   ${({ imagePlaceholderHero }) => imagePlaceholderHero
     && css`
-    @media (min-width: 769px) {
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 60vw;
-        width: 100%;
-        height: 100%;
-        filter: blur(5px);
-        background: url(${imagePlaceholderHero})
-        no-repeat;
+      @media (min-width: 769px) {
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 60vw;
+          width: 100%;
+          height: 100%;
+          filter: blur(5px);
+          background: url(${imagePlaceholderHero}) no-repeat;
+        }
       }
-    }
-  `}
+    `}
 `;
-
-const Toop = styled.div``;
 
 const PostHeroContent = styled.div`
   display: flex;
@@ -118,8 +115,8 @@ const PostHeroSubTitle = styled.div`
   }
   .post-subtitle-icon {
     margin-right: 0.3rem;
-    transform: translateY(2px);
-    color: ${LIGHT_VIOLET};
+    transform: translateY(4px);
+    color: ${LIGHT_GRAY};
   }
 `;
 
@@ -142,38 +139,36 @@ const PostHero = ({
   const imagePlaceholderHero = blogHeroImagePlaceholder(category);
   return (
     <PostHeroBlock imagePlaceholderHero={imagePlaceholderHero}>
-      <Toop>
-        <PostHeroContent>
-          <PostHeroTitle>{title}</PostHeroTitle>
-          <PostHeroSubTitle>
-            <div className="post-subtitle-date">
-              <FaCalendar className="post-subtitle-icon" />
-              {formatDate(date)}
+      <PostHeroContent>
+        <PostHeroTitle>{title}</PostHeroTitle>
+        <PostHeroSubTitle>
+          <div className="post-subtitle-date">
+            <FaCalendarAlt className="post-subtitle-icon" />
+            {formatDate(date)}
+          </div>
+          {category && (
+            <div className="post-subtitle-category">
+              <FaFolderOpen className="post-subtitle-icon" />
+              <span key={`${category}category`} className="post-subtitle-tag">
+                <Link to={`/category/${kebabCase(category)}/`}>
+                  {upperFirst(category)}
+                </Link>
+              </span>
             </div>
-            {category && (
-              <div className="post-subtitle-category">
-                <FaFolder className="post-subtitle-icon" />
-                <span key={`${category}category`} className="post-subtitle-tag">
-                  <Link to={`/category/${kebabCase(category)}/`}>
-                    {upperFirst(category)}
-                  </Link>
+          )}
+          {tags && (
+            <div className="post-subtitle-tags">
+              <FaTags className="post-subtitle-icon" />
+              {tags.sort().map((tag) => (
+                <span key={`${tag}tag`} className="post-subtitle-tag">
+                  <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
                 </span>
-              </div>
-            )}
-            {tags && (
-              <div className="post-subtitle-tags">
-                <FaTags className="post-subtitle-icon" />
-                {tags.sort().map((tag) => (
-                  <span key={`${tag}tag`} className="post-subtitle-tag">
-                    <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                  </span>
-                ))}
-              </div>
-            )}
-          </PostHeroSubTitle>
-          <PostHeroDescription>{description}</PostHeroDescription>
-        </PostHeroContent>
-      </Toop>
+              ))}
+            </div>
+          )}
+        </PostHeroSubTitle>
+        <PostHeroDescription>{description}</PostHeroDescription>
+      </PostHeroContent>
     </PostHeroBlock>
   );
 };
