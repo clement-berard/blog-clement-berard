@@ -6,6 +6,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { Location } from '@reach/router';
 import MetaImageDefault from '../../static/img/blog-card/meta-image-default.jpeg';
 import config from '../../config/site.config';
+import siteLogo from '../img/logo-cblog.svg';
 
 function SEO({
   description, lang, meta, keywords, title, image, isPost, frontmatter,
@@ -143,6 +144,7 @@ function SEO({
                   '@type': 'Organization',
                   name: siteAuthorName,
                   url: personWebsite,
+                  logo: siteLogo,
                 },
                 url: href,
                 datePublished: frontmatter.date,
