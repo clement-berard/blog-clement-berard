@@ -48,6 +48,10 @@ function SEO({
             titleTemplate={titleTemplatePattern}
             meta={[
               {
+                name: 'google-site-verification',
+                content: 'RcsNLFZhykbw3M3zg-ZLFJZISDC67xyPoaE87HYJP-c',
+              },
+              {
                 name: 'description',
                 content: metaDescription,
               },
