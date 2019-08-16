@@ -4,7 +4,7 @@ const { createFilePath } = require('gatsby-source-filesystem');
 const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 
 const getFullSlug = (category, slug) => (category ? `${_.kebabCase(category)}${slug}` : slug);
-console.log("process.env.NODE_ENV", process.env.NODE_ENV)
+console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
 
