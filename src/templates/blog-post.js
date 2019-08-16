@@ -1,14 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { kebabCase, upperFirst, noop } from "lodash";
-import { FaCalendar, FaFolder, FaTags } from "react-icons/fa";
-import { graphql, Link } from "gatsby";
-import Layout from "../components/Layout";
-import Content, { HTMLContent } from "../components/Content";
-import SEO from "../components/seo";
-import ShareComponent from "../components/Share";
-import PostHero from "../components/PostHero";
-import { blogCardImagePlaceholder, formatDate } from "../utils/functions.utils";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { noop } from 'lodash';
+import { graphql } from 'gatsby';
+import Layout from '../components/Layout';
+import Content, { HTMLContent } from '../components/Content';
+import SEO from '../components/seo';
+import ShareComponent from '../components/Share';
+import PostHero from '../components/PostHero';
+import { blogCardImagePlaceholder } from '../utils/functions.utils';
 
 export const BlogPostTemplate = ({
   content,
@@ -17,7 +16,7 @@ export const BlogPostTemplate = ({
   tags,
   category,
   title,
-  date
+  date,
 }) => {
   const PostContent = contentComponent || Content;
   return (
@@ -50,21 +49,21 @@ BlogPostTemplate.propTypes = {
   contentComponent: PropTypes.func,
   tags: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.string),
-    PropTypes.bool
+    PropTypes.bool,
   ]),
   category: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   description: PropTypes.string,
   title: PropTypes.string,
-  date: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+  date: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 BlogPostTemplate.defaultProps = {
   date: false,
   contentComponent: noop,
-  description: "",
-  title: "",
+  description: '',
+  title: '',
   tags: false,
-  category: false
+  category: false,
 };
 
 const BlogPost = ({ data }) => {
@@ -95,8 +94,8 @@ const BlogPost = ({ data }) => {
 
 BlogPost.propTypes = {
   data: PropTypes.shape({
-    markdownRemark: PropTypes.object
-  }).isRequired
+    markdownRemark: PropTypes.object,
+  }).isRequired,
 };
 
 export default BlogPost;
