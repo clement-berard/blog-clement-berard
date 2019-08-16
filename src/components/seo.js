@@ -144,7 +144,7 @@ function SEO({
                   '@type': 'Organization',
                   name: siteAuthorName,
                   url: personWebsite,
-                  logo: siteLogo,
+                  logo: `${hostname}/icons/icon-144x144.png`,
                 },
                 url: href,
                 datePublished: frontmatter.date,
