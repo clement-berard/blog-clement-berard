@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty } from 'lodash';
+import { isEmpty, isArray } from 'lodash';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Location } from '@reach/router';
 import MetaImageDefault from '../../static/img/blog-card/meta-image-default.jpeg';
 import config from '../../config/site.config';
+import siteLogo from '../img/logo-cblog.svg';
 
 function SEO({
-  description, lang, meta, keywords, title, image,
+  description, lang, meta, keywords, title, image, isPost, frontmatter,
 }) {
   const { site } = useStaticQuery(
     graphql`
@@ -36,7 +37,7 @@ function SEO({
     <Location>
       {({ location }) => {
         const { href } = location;
-        const { twitterUser } = config;
+        const { twitterUser, siteAuthorName, personWebsite } = config;
         const hostname = siteMetadata.siteUrl;
         const generatedMetaImage = generateMetaImage(metaImage, hostname);
         return (
@@ -113,7 +114,51 @@ function SEO({
                   : [],
               )
               .concat(meta)}
-          />
+          >
+
+            {isPost
+
+            && (
+            <script type="application/ld+json">
+              {JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'BlogPosting',
+                mainEntityOfPage: {
+                  '@type': 'WebPage',
+                  '@id': href,
+                },
+                headline: metaTitle,
+                image: generatedMetaImage,
+                author: {
+                  '@type': 'Person',
+                  name: siteAuthorName,
+                  url: personWebsite,
+                },
+                creator: {
+                  '@type': 'Person',
+                  name: siteAuthorName,
+                  url: personWebsite,
+                },
+                keywords: isArray(frontmatter.tags) && frontmatter.tags.join(', '),
+                publisher: {
+                  '@type': 'Organization',
+                  name: siteAuthorName,
+                  url: personWebsite,
+                  logo: {
+                    '@type': 'ImageObject',
+                    url: `${hostname}/icons/icon-144x144.png`,
+                  },
+                },
+                url: href,
+                datePublished: frontmatter.date,
+                dateCreated: frontmatter.date,
+                dateModified: frontmatter.date,
+                description: frontmatter.description,
+              })}
+            </script>
+            )}
+
+          </Helmet>
         );
       }}
     </Location>
@@ -121,21 +166,25 @@ function SEO({
 }
 
 SEO.defaultProps = {
+  description: '',
+  frontmatter: {},
+  image: '',
+  isPost: false,
+  keywords: [],
   lang: 'fr',
   meta: [],
-  keywords: [],
-  description: '',
   title: '',
-  image: '',
 };
 
 SEO.propTypes = {
   description: PropTypes.string,
+  frontmatter: PropTypes.object,
+  image: PropTypes.string,
+  isPost: PropTypes.bool,
+  keywords: PropTypes.arrayOf(PropTypes.string),
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  keywords: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string,
-  image: PropTypes.string,
 };
 
 export default SEO;

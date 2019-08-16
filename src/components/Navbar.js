@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
 import { FaChild, FaGithub } from 'react-icons/fa';
+import { personWebsite, personGithubWebsite } from '../../config/site.config';
 import {
   DARK_VIOLET,
   LIGHT_VIOLET,
@@ -83,13 +84,13 @@ const Navbar = () => (
       </div>
       <div />
       <div>
-        <a href="https://berard.dev" target="_blank" rel="noopener noreferrer">
+        <a href={personWebsite} target="_blank" rel="noopener noreferrer">
           <FaChild />
         </a>
       </div>
       <div>
         <a
-          href="https://github.com/clement-berard"
+          href={personGithubWebsite}
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { personWebsite, siteAuthorName } from '../../config/site.config';
 import { DARK_VIOLET, LIGHT_GRAY, PALETTE_6 } from '../../config/theme.config';
 
 const FooterBlock = styled.div`
@@ -25,8 +26,8 @@ const FooterContent = styled.div`
 const Footer = () => {
   const dt = new Date();
   const LinkWebsite = () => (
-    <a href="https://berard.dev" target="_blank" rel="noopener noreferrer">
-      Clément BERARD
+    <a href={personWebsite} target="_blank" rel="noopener noreferrer">
+      {siteAuthorName}
     </a>
   );
   const text = `© ${dt.getFullYear()}`;
